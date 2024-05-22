@@ -22,12 +22,13 @@ post '/visit' do
 	@username = params[:username]
 	@phone = params[:phone]
 	@datetime = params[:datetime]
+	@persons = params[:persons]
 
 	@title = 'Спасибо!'
-	@message = "Уважаемый #{@username}, #{@phone}, мы вас ждём #{@datetime}"
+	@message = "Уважаемый #{@username}, #{@phone}, мы вас ждём #{@datetime}, ваш парикмахер #{@persons}"
 
 	f = File.open './public/users.txt', 'a'
-	f.write "User: #{@username}, Phone: #{@phone}, Date and time: #{@datetime}"
+	f.write "User: #{@username}, Phone: #{@phone}, Date and time: #{@datetime}, Persons: #{@persons}"
 	f.close
 
 	erb :message
@@ -35,7 +36,7 @@ end
 
 post '/contacts' do
 	@email = params[:email]
-	@messages= params[:messages]
+	@messages = params[:messages]
 
 	@title = 'Спасибо!'
 	@message = "Уважаемый клиент, мы вам ответим в самое ближайшее время на вашу почту #{@email}"
